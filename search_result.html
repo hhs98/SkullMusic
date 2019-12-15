@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>search result</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+        <script src="angular/angular.min.js"></script>
+        <script src="sec.js"></script>
+        <script src="main.js"></script>
+        <script src="https://connect.soundcloud.com/sdk/sdk-3.3.2.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script type="text/javascript">
+            function loader()
+            {
+                $(".se-pre-con").fadeOut("slow");
+            }
+            $(window).load(function() {
+                loader();
+            });
+        </script>
+        <style type="text/css">
+            html
+            {
+                background-color: white;
+            }
+            body
+            {
+                background-color: white;
+                margin:0px;
+            }
+
+            
+
+          a,td
+            {
+                color:  #000;
+            }
+            .list
+            {
+                margin-left: 0%;
+            }
+            tr
+            {
+                height: 100px;
+                transition-property: transform;
+                transition-duration: 0.4s;
+                transition-timing-function: ease-out;
+            }
+            tr:hover
+            {
+                background-color:   #00FF90;
+                box-shadow: 3px 3px 20px    #00FF90;
+                transform: scale(1.03,1.015);
+
+            }
+            tr:hover a
+            {
+                color: #000;
+                text-decoration:none;
+                font-size: 20px;
+            }
+            tr:hover td
+            {
+                color:white;
+                font-size: 20px;
+            }
+            tr:hover img
+            {
+                height: 130px;
+            }
+            .one
+            {
+                width: 140px;
+             
+            }
+            .two
+            {
+                width: 700px;
+            }
+            .three
+            {
+                width: 140px;
+            }
+            .four
+            {
+                width: 100px;
+            }
+            .fa-play-circle
+            {
+                font-size: 30px;
+                color: black;
+                margin-right: 50px;
+            }
+            .fa-pause-circle
+            {
+                font-size: 30px;
+                color: black;
+                margin-right: 50px;
+            }
+            .no-js #loader { display: none;  }
+            .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+            .se-pre-con {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                 z-index: 9999;
+                background: url(main_load.gif) center no-repeat #fff;
+            }
+
+             .form-image
+             {
+              
+                margin-top: 7%;
+                margin-bottom: 5%;
+               
+
+             }
+
+            .btn
+                {
+                    border-radius: 10px;
+                    background: #00FF90;
+                    border-color: #00FF90;
+                
+                }
+
+            .form-control
+            {
+                border-radius: 10px;
+                border-color: #00FF90;
+
+            }
+
+
+            .form-inline   
+            {
+               margin-left: 42%;
+               margin-bottom: 7%;
+              
+    
+
+         
+
+        </style>
+    </head>
+    <body ng-app="soundcloudSearch" ng-controller="mainCtrl" data-ng-init="search()">
+        <div class="se-pre-con"></div>
+        <div class="glhf">
+
+
+
+
+            <div class="form-image">
+               <center><a href="index.html"><img src='welcom_logo.png' width="300px" height="300px" ></a></center>
+            </div>
+
+
+
+
+
+
+          <div class="form-group">
+                <center><form class='form-inline'>
+                    <input id="song1" class='form-control' type="search"
+                    value="faded"  ng-model="seach_input" ng-keypress="($event.which === 90)?search():0">&nbsp
+                   <button class="btn btn-success" ng-click="search()" p style="color:#000">Search</button>
+                </form></center>
+            </div>
+            <br><br>
+
+
+
+
+
+
+            <div class="form-group">
+               <center><table class="list" id="pp">
+                        <tr ng-repeat="track in tracks">
+
+                            <td class="one">
+                                <img src="{{track.artwork_url}}" class="img-responsive" height="100px">
+                            </td>
+                            <td class="two"><a href="{{track.permalink_url}}" target="_blank">{{track.title}}</a></td>
+                            <td class="three"><a href="{{track.user.permalink_url}}">{{track.user.username}}</a></td>
+                            <td class="four">{{track.duration | durationMins}}</td>
+                            <td ng-click="play($index)"><i class="fas fa-play-circle"></i></td>
+                        </tr>
+                </table></center>
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+    </body>
+</html>
